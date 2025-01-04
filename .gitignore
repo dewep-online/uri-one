@@ -6,10 +6,21 @@
 *.out
 *.lock
 *.log
+*.exe~
+*.db
+*.db-journal
+*.mmdb
 *.dev.yaml
 
-# vendor/
-.idea
-.vscode
 .tools/
+.idea/
+.vscode/
+
 build/
+bin/
+# vendor/
+
+coverage.txt
+coverage.out
+
+.env
