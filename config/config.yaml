@@ -1,33 +1,42 @@
-env: dev
-level: 4
-log: /var/log/urione.log
+env: prod
+
+log:
+  file_path: /var/log/urione.log
+  format: syslog
+  level: 4
 
 http:
-    main:
-        addr: 127.0.0.1:8080
+  - addr: 0.0.0.0:8080
+    tag: main
 
 mysql:
-    - name: main
-      host: 127.0.0.1
-      port: 3306
-      schema: test_database
-      user: test
-      password: test
-      timezone: UTC
-      charset: utf8mb4
-      collation: utf8mb4_unicode_ci
-      maxidleconn: 5
-      maxopenconn: 5
-      interpolateparams: false
-      maxconnttl: 50s
-      timeout: 5s
-      readtimeout: 5s
-      writetimeout: 5s
+  - tags: master,slave
+    host: 127.0.0.1
+    port: 3306
+    user: test
+    password: test
+    schema: test_database
+    charset: utf8mb4
+    collation: utf8mb4_unicode_ci
+    timezone: UTC
 
 mysql_migrate:
-    - pool: main
-      dir: /var/lib/urione/migrations
+  - tags: master
+    dir: /var/lib/urione/migrations
 
-address: http://localhost:8080
+contacts:
+  address: 'http://localhost:8080'
+  org_name: 'Example Team'
+  service_name: 'Shorten'
+  email: 'help@example.com'
 
-shorten_string: ec9z26f3m5stu71pygw0x8rnkobiqh4djvla
+captcha:
+  use: false
+  client_key: 'ysc1_************************************************'
+  server_key: 'ysc2_************************************************'
+  validate_url: 'https://smartcaptcha.yandexcloud.net/validate'
+
+exclude_domains:
+  - localhost
+
+shorten_alphabet: Gdr1Mq7p5ebLUhsIaBQVA3S8gmHjPDtC4ZWFRv6cnyKXiOwkf9zuoJlEYTx20N

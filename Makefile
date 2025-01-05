@@ -1,36 +1,41 @@
+SHELL=/bin/bash
 
 .PHONY: install
 install:
-	go install github.com/osspkg/devtool@latest
-
-.PHONY: setup
-setup:
-	devtool setup-lib
+	go install go.osspkg.com/goppy/v2/cmd/goppy@latest
+	goppy setup-lib
+	cd ./ui && yarn install --force --ignore-scripts
 
 .PHONY: lint
 lint:
-	devtool lint
+	goppy lint
 
 .PHONY: license
 license:
-	devtool license
+	goppy license
 
-.PHONY: build
-build:
-	devtool build --arch=amd64
+.PHONY: build_back
+build_back:
+	goppy build --arch=amd64
+
+.PHONY: build_front
+build_front:
+	cd ./ui && yarn run build
 
 .PHONY: tests
 tests:
-	devtool test
+	goppy test
 
-.PHONY: pre-commite
-pre-commite: setup lint build tests
+.PHONY: pre-commit
+pre-commit: install license build_front lint tests build_back
 
 .PHONY: ci
-ci: install setup lint build tests
+ci: pre-commit
 
-run_local:
+run_back:
 	go run cmd/urione/main.go --config=config/config.dev.yaml
+run_front:
+	cd ./ui && yarn run start
 
 deb:
 	deb-builder build

@@ -1,0 +1,74 @@
+<h1>Badge Generation</h1>
+
+<code class="box bg-light p-1 f-size-sm">
+  {{ config?.address }}/badge/[color]/[title]/[value]/image.svg
+</code>
+
+<div class="mt-1">
+  <b class="mr-1">Color:</b>
+  <span style="color: #0d6efd" class="ts">primary</span>,
+  <span style="color: #6c757d" class="ts">secondary</span>,
+  <span style="color: #198754" class="ts">success</span>,
+  <span style="color: #dc3545" class="ts">danger</span>,
+  <span style="color: #ffc107" class="ts">warning</span>,
+  <span style="color: #0dcaf0" class="ts">info</span>,
+  <span style="color: #f8f9fa" class="ts">light</span>
+</div>
+
+<h1>Builder</h1>
+
+<div class="row">
+  <select [(ngModel)]="builderColor" class="col">
+    <option value="primary">primary</option>
+    <option value="secondary">secondary</option>
+    <option value="success">success</option>
+    <option value="danger">danger</option>
+    <option value="warning">warning</option>
+    <option value="info">info</option>
+    <option value="light">light</option>
+  </select>
+  <input [(ngModel)]="builderTitle" type="text" placeholder="title" class="col">
+  <input [(ngModel)]="builderValue" type="text" placeholder="data" class="col">
+
+</div>
+
+<div class="box">
+  <img src="/badge/{{builderColor}}/{{builderTitle}}/{{builderValue}}/image.svg" alt=""/>
+</div>
+<code class="box p-1 bg-light f-size-sm">
+  <b>URL:</b><br><br>
+  {{ config?.address }}/badge/{{ builderColor }}/{{ builderTitle }}/{{ builderValue }}/image.svg<br><br>
+  <b>Markdown:</b><br><br>
+  ![{{ builderValue }}]({{ config?.address }}/badge/{{ builderColor }}/{{ builderTitle }}/{{ builderValue }}/image.svg)
+</code>
+
+
+<h1>Example</h1>
+
+<code class="box bg-light p-1 f-size-sm">
+  &lt;img src=&quot;{{ config?.address }}/badge/light/User ID/12/image.svg&quot;&gt;
+</code>
+
+<div class="row">
+  <div class="col">
+    <img src="/badge/primary/color/primary/image.svg" alt=""/>
+  </div>
+  <div class="col">
+    <img src="/badge/secondary/color/secondary/image.svg" alt=""/>
+  </div>
+  <div class="col">
+    <img src="/badge/success/color/success/image.svg" alt=""/>
+  </div>
+  <div class="col">
+    <img src="/badge/danger/color/danger/image.svg" alt=""/>
+  </div>
+  <div class="col">
+    <img src="/badge/warning/color/warning/image.svg" alt=""/>
+  </div>
+  <div class="col">
+    <img src="/badge/info/color/info/image.svg" alt=""/>
+  </div>
+  <div class="col">
+    <img src="/badge/light/color/light/image.svg" alt=""/>
+  </div>
+</div>
