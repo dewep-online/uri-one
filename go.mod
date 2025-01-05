@@ -38,7 +38,7 @@ require (
 	go.osspkg.com/network v0.5.0 // indirect
 	go.osspkg.com/syncing v0.3.0 // indirect
 	go.osspkg.com/xc v0.4.0 // indirect
-	golang.org/x/image v0.14.0 // indirect
+	golang.org/x/image v0.18.0 // indirect
 	golang.org/x/sys v0.28.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
 	google.golang.org/protobuf v1.36.0 // indirect
